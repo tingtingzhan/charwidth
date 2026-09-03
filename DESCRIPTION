@@ -1,0 +1,14 @@
+Package: charwidth
+Type: Package
+Title: charwidth
+Version: 0.1.0
+Date: 2026-08-30
+Description: Need to think more..
+Authors@R: c(person(given = "Tingting", family = "Zhan", role = c("aut", "cre"), email = "tingtingzhan@gmail.com"))
+Language: en-US
+Encoding: UTF-8
+License: GPL-2
+Depends: R (>= 4.6)
+Imports: cli (== 3.6.6), stringi (== 1.8.9), stringr (== 1.6.0)
+Config/roxygen2/version: 8.1.0
+Config/roxygen2/markdown: TRUE
