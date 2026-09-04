@@ -24,17 +24,17 @@ charwidth <- \(x) {
       enc <- stri_enc_mark(i)
       if (!all(enc %in% c('ASCII', 'UTF-8'))) stop('unknown encoding')
       utf8 <- (enc == 'UTF-8')
-      if (Sys.getenv('RSTUDIO') == '1') {
+      if (Sys.getenv('RSTUDIO') == '1') { # RStudio
         sum(!utf8) + 
           sum(utf8) * .RStudio_utf8
-      } else {
+      } else { # Rgui
         cjk <- str_detect(i, pattern = '\\p{Han}') | 
           str_detect(i, pattern = '\\p{Hiragana}') | 
           str_detect(i, pattern = '\\p{Katakana}') | 
           str_detect(i, pattern = '\\p{Hangul}')
         emoji <- str_detect(i, pattern = '\\p{Emoji}')
-        if (!all((cjk | emoji)[utf8])) stop('any other symbol?')
         sum(!utf8) + 
+          sum(utf8 & !cjk & !emoji) +
           sum(cjk) * .Rgui_CJK + 
           sum(emoji) * .Rgui_emoji
       }
