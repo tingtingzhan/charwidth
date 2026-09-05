@@ -51,7 +51,7 @@ charwidth <- \(x) {
   } else { # Rgui
     sum(!utf8) + 
       sum(utf8 & !utf_cj & !utf_k & !emoji) +
-      sum(utf_cj) * .Rgui_cj
+      sum(utf_cj) * .Rgui_cj +
       sum(utf_k) * .Rgui_kr + 
       sum(emoji) * .Rgui_emoji
   }

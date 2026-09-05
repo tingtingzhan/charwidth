@@ -14,7 +14,8 @@ An Alternative \link[base]{nchar}
 }
 \examples{
 (x = c('tea\u8336\ub2e4\ub3c4\U1f375\u207a'))
-charwidth(x) # 10.21905
+charwidth(x) 
+# 10.21905 in RStudio
 \dontrun{
 10.21905 * 9 # approx 92L
 library(stringi)
