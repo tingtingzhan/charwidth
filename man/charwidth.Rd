@@ -14,12 +14,15 @@ An Alternative \link[base]{nchar}
 }
 \examples{
 (x = c('tea\u8336\ub2e4\ub3c4\U1f375\u207a'))
-charwidth(x) 
-# 10.21905 in RStudio
+charwidth(x)
+# RGui: 10.81754 * 11 # approx 119
+# RStudio: 10.21905 * 9 # approx 92L
+# Positron: 10.1952 * 15 # approx 153
 \dontrun{
-10.21905 * 9 # approx 92L
 library(stringi)
-cat(stri_dup(x, 9L), stri_dup('a', 92L), sep = '\n')
+cat(stri_dup(x, 11L), stri_dup('a', 119L), sep = '\n') # RGui
+cat(stri_dup(x, 9L), stri_dup('a', 92L), sep = '\n') # RStudio
+cat(stri_dup(x, 15L), stri_dup('a', 153L), sep = '\n') # Positron
 }
 
 }
