@@ -15,6 +15,9 @@ The function \code{\link[=print_ANSI_matrix]{print_ANSI_matrix()}} does not have
 \description{
 Print \link[base]{matrix} with ANSI escape sequences in the body and/or \link[base]{dimnames}.
 }
+\note{
+The function \code{\link[=print_ANSI_matrix]{print_ANSI_matrix()}} works only in RStudio, not in R Gui and Positron.
+}
 \seealso{
 \code{colorDF::colorDF}
 }

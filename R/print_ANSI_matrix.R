@@ -10,6 +10,9 @@
 #' @returns
 #' The function [print_ANSI_matrix()] does not have a returned value.
 #' 
+#' @note
+#' The function [print_ANSI_matrix()] works only in RStudio, not in R Gui and Positron.
+#' 
 #' @seealso `colorDF::colorDF`
 #' 
 #' @importFrom cli ansi_strip
