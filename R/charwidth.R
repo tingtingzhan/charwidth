@@ -4,8 +4,14 @@
 #' @param x \link[base]{character} \link[base]{vector}
 #' 
 #' @examples
-#' c('tea\U1f375', '\U1f1fa\U1f1f8 and \U1f1e8\U1f1e6') |>
-#'   charwidth()
+#' (x = c('tea\u8336\ub2e4\ub3c4\U1f375\u207a'))
+#' charwidth(x) 
+#' # 10.21905 in RStudio
+#' \dontrun{
+#' 10.21905 * 9 # approx 92L
+#' library(stringi)
+#' cat(stri_dup(x, 9L), stri_dup('a', 92L), sep = '\n')
+#' }
 #' 
 #' @importFrom stringr boundary str_split str_detect
 #' @export
@@ -25,19 +31,28 @@ charwidth <- \(x) {
   if (!all(enc %in% c('ASCII', 'UTF-8'))) stop('unknown encoding')
   
   utf8 <- (enc == 'UTF-8')
-  cjk <- x |>
-    str_detect(pattern = '\\p{Han}|\\p{Hiragana}|\\p{Katakana}|\\p{Hangul}')
+  utf_cj <- x |>
+    str_detect(pattern = '\\p{Han}|\\p{Hiragana}|\\p{Katakana}')
+  utf_k <- x |>
+    str_detect(pattern = '\\p{Hangul}')
   emoji <- x |>
     str_detect(pattern = '\\p{Emoji}')
   
   if (Sys.getenv('RSTUDIO') == '1') { # RStudio
     sum(!utf8) + 
-      sum(utf8 & !cjk & !emoji) +
-      sum(cjk | emoji) * .RStudio_cjk_emoji
+      sum(utf8 & !utf_cj & !utf_k & !emoji) +
+      sum(utf_cj | emoji) * .RStudio_cj_emoji +
+      sum(utf_k) * .RStudio_kr
+  } else if (Sys.getenv('POSITRON') == '1') {
+    sum(!utf8) + 
+      sum(utf8 & !utf_cj & !utf_k & !emoji) +
+      sum(utf_cj | emoji) * .Positron_cj_emoji +
+      sum(utf_k) * .Positron_kr
   } else { # Rgui
     sum(!utf8) + 
-      sum(utf8 & !cjk & !emoji) +
-      sum(cjk) * .Rgui_CJK + 
+      sum(utf8 & !utf_cj & !utf_k & !emoji) +
+      sum(utf_cj) * .Rgui_cj
+      sum(utf_k) * .Rgui_kr + 
       sum(emoji) * .Rgui_emoji
   }
 }

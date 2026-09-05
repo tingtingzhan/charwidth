@@ -13,7 +13,12 @@ charwidth(x)
 An Alternative \link[base]{nchar}
 }
 \examples{
-c('tea\U1f375', '\U1f1fa\U1f1f8 and \U1f1e8\U1f1e6') |>
-  charwidth()
+(x = c('tea\u8336\ub2e4\ub3c4\U1f375\u207a'))
+charwidth(x) # 10.21905
+\dontrun{
+10.21905 * 9 # approx 92L
+library(stringi)
+cat(stri_dup(x, 9L), stri_dup('a', 92L), sep = '\n')
+}
 
 }
