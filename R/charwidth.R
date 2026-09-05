@@ -33,6 +33,7 @@ charwidth <- \(x) {
 # `x` is after ?stringr::str_split
 #' @importFrom stringi stri_enc_mark
 #' @importFrom stringr str_detect
+# @importFrom emoji emoji_detect
 .charwidth <- \(x) {
   
   enc <- stri_enc_mark(x)
@@ -43,8 +44,8 @@ charwidth <- \(x) {
     str_detect(pattern = '\\p{Han}|\\p{Hiragana}|\\p{Katakana}')
   utf_k <- x |>
     str_detect(pattern = '\\p{Hangul}')
-  emoji <- x |>
-    str_detect(pattern = '\\p{Emoji}')
+  emoji <- x |> str_detect(pattern = '\\p{So}') # Symbols, Other (includes many emojis)
+  #emoji <- x |> emoji_detect()
   
   if (Sys.getenv('RSTUDIO') == '1') { # RStudio
     sum(!utf8) + 
