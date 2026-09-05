@@ -16,10 +16,15 @@
 #' cat(stri_dup(x, 15L), stri_dup('a', 153L), sep = '\n') # Positron
 #' }
 #' 
+#' x |>
+#'  cli::col_red() |>
+#'  charwidth()
+#' @importFrom cli ansi_strip
 #' @importFrom stringr boundary str_split str_detect
 #' @export
 charwidth <- \(x) {
   x |>
+    ansi_strip() |>
     str_split(pattern = boundary(type = 'character')) |>
     vapply(FUN = .charwidth, FUN.VALUE = NA_real_)
 }

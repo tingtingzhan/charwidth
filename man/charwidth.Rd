@@ -25,4 +25,7 @@ cat(stri_dup(x, 9L), stri_dup('a', 92L), sep = '\n') # RStudio
 cat(stri_dup(x, 15L), stri_dup('a', 153L), sep = '\n') # Positron
 }
 
+x |>
+ cli::col_red() |>
+ charwidth()
 }
