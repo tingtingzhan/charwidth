@@ -3,7 +3,11 @@
 export(cat_matrix)
 export(charwidth)
 export(ws_justify)
-importFrom(cli,ansi_strip)
+importFrom(cli,
+  ansi_strip,
+  col_red,
+  style_bold
+)
 importFrom(stringi,
   stri_dup,
   stri_enc_mark

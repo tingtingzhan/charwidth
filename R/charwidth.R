@@ -68,7 +68,18 @@ charwidth <- \(x) {
 
 
 
-
+#' @importFrom cli col_red style_bold
+#' @importFrom stringi stri_dup
+.check_width <- \(x, times, total) {
+  sprintf('%d/%d\n', total, times) |>
+    col_red() |>
+    style_bold() |>
+    cat()
+  cat(
+    stri_dup(str = x, times = times), 
+    stri_dup(str = 'a', times = total), 
+    sep = '\n')
+}
 
 
 
