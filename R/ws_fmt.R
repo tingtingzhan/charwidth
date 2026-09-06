@@ -1,9 +1,9 @@
 
 
-#' @title Padded Whitespace for Left/Right Justification
+#' @title Whitespace-Padded for Left/Right Justification
 #' 
 #' @description
-#' Padded whitespace for left/right justification.
+#' Whitespace-padded for left/right justification.
 #' 
 #' @param x an R object of \link[base]{mode} \link[base]{character}
 #' 
@@ -15,8 +15,8 @@
 #' The function [ws_fmt()] returns a \link[base]{character} \link[base]{vector}.
 #' 
 #' @examples
-#' ws_fmt(c('a', 'abc', 'ab'))
-#' ws_fmt(c('a', 'abc', 'ab'), justify = 'right')
+#' c('a', 'abc', 'ab') |> ws_fmt() |> cat(sep = '\n')
+#' c('a', 'abc', 'ab') |> ws_fmt(justify = 'right') |> cat(sep = '\n')
 #' 
 #' @importFrom stringi stri_dup
 #' @export

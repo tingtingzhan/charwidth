@@ -2,7 +2,7 @@
 % Please edit documentation in R/ws_fmt.R
 \name{ws_fmt}
 \alias{ws_fmt}
-\title{Padded Whitespace for Left/Right Justification}
+\title{Whitespace-Padded for Left/Right Justification}
 \usage{
 ws_fmt(x, justify = c("left", "right"))
 }
@@ -15,7 +15,7 @@ ws_fmt(x, justify = c("left", "right"))
 The function \code{\link[=ws_fmt]{ws_fmt()}} returns a \link[base]{character} \link[base]{vector}.
 }
 \description{
-Padded whitespace for left/right justification.
+Whitespace-padded for left/right justification.
 }
 \examples{
 ws_fmt(c('a', 'abc', 'ab'))
