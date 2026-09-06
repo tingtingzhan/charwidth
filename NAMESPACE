@@ -2,6 +2,7 @@
 
 export(cat_matrix)
 export(charwidth)
+export(utf8_width)
 export(ws_fmt)
 importFrom(cli,
   ansi_strip,
