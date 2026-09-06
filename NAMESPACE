@@ -2,7 +2,7 @@
 
 export(cat_matrix)
 export(charwidth)
-export(ws_justify)
+export(ws_fmt)
 importFrom(cli,
   ansi_strip,
   col_red,

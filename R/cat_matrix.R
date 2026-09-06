@@ -7,11 +7,15 @@
 #' 
 #' @param x \link[base]{character} \link[base]{matrix}
 #' 
+#' @param rownm_justify \link[base]{character} scalar, default value is `'left'`, see the function [ws_fmt()]
+#' 
+#' @param justify \link[base]{character} scalar, default value is `'right'`, see the function [ws_fmt()]
+#' 
 #' @returns
 #' The function [cat_matrix()] does not have a returned value.
 #' 
 #' @export
-cat_matrix <- function(x) {
+cat_matrix <- function(x, rownm_justify = 'left', justify = 'right') {
   
   if (!is.matrix(x) || !is.character(x)) stop('only dealing with \'character\' \'matrix\', for now')
   
@@ -33,19 +37,16 @@ cat_matrix <- function(x) {
     x1 <- rbind(dnm[[2L]], x)
   }
   
-  rnm_prt <- if (length(rnm)) {
-    paste0(rnm, ws_justify(rnm))
+  rnm_j <- if (length(rnm)) {
+    ws_fmt(x = rnm, justify = rownm_justify)
   } # else NULL
   
-  x_prt <- ncol(x1) |>
-    seq_len() |>
-    lapply(FUN = \(i) {
-      paste0(ws_justify(x1[,i]), x1[,i])
-    })
+  x_j <- x1 |>
+    apply(MARGIN = 2L, FUN = ws_fmt, justify = justify, simplify = FALSE)
   
   .mapply(
     FUN = paste, 
-    dots = c(list(rnm_prt), x_prt), 
+    dots = c(list(rnm_j), x_j), 
     MoreArgs = list(collapse = ' ')
   ) |>
     lapply(FUN = cat, sep = '\n')

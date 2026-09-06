@@ -4,10 +4,14 @@
 \alias{cat_matrix}
 \title{An Alternative Print of \link[base]{matrix} by \link[base]{cat}}
 \usage{
-cat_matrix(x)
+cat_matrix(x, rownm_justify = "left", justify = "right")
 }
 \arguments{
 \item{x}{\link[base]{character} \link[base]{matrix}}
+
+\item{rownm_justify}{\link[base]{character} scalar, default value is \code{'left'}, see the function \code{\link[=ws_fmt]{ws_fmt()}}}
+
+\item{justify}{\link[base]{character} scalar, default value is \code{'right'}, see the function \code{\link[=ws_fmt]{ws_fmt()}}}
 }
 \value{
 The function \code{\link[=cat_matrix]{cat_matrix()}} does not have a returned value.
