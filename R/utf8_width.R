@@ -12,6 +12,8 @@
 #' utf8_width('\u30aa', times = 60L, total = 100L) # katakana
 #' utf8_width('\ub3c4', times = 70L, total = 101L) # hanga
 #' utf8_width('\U1f375', times = 60L, total = 100L) # emoji
+#' utf8_width('\u2009', times = 100L, total = 100L) # thin space
+#' utf8_width('\u202f', times = 100L, total = 100L) # narrow no-break space
 #' # Positron, mac default
 #' utf8_width('\u8336', times = 85L, total = 141L) # Chinese
 #' utf8_width('\u304a', times = 85L, total = 141L) # hiragana
@@ -34,8 +36,10 @@ utf8_width <- \(x, times, total) {
     style_bold() |>
     cat()
   cat(
-    stri_dup(str = x, times = times), 
-    stri_dup(str = '-', times = total), 
+    stri_dup(str = x, times = times) |>
+      sprintf(fmt = '%s\u220e'), 
+    stri_dup(str = '-', times = total) |>
+      sprintf(fmt = '%s\u220e'), 
     sep = '\n')
 }
 
