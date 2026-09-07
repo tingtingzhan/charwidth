@@ -41,3 +41,35 @@ utf8_width <- \(x, times, total) {
 
 
 
+w_cj <- \() {
+  if (Sys.getenv('RSTUDIO') == '1') {
+    100/60
+  } else if (Sys.getenv('POSITRON') == '1') {
+    141/85
+  } else { # Rgui
+    140/84
+  }
+}
+
+w_emoji <- \() {
+  if (Sys.getenv('RSTUDIO') == '1') {
+    100/60
+  } else if (Sys.getenv('POSITRON') == '1') {
+    141/85
+  } else { # Rgui
+    136/60
+  }
+}
+
+w_kr <- \() {
+  if (Sys.getenv('RSTUDIO') == '1') {
+    101/70
+  } else if (Sys.getenv('POSITRON') == '1') {
+    141/98
+  } else { # Rgui
+    137/95
+  }
+}
+
+
+

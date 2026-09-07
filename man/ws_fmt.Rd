@@ -18,8 +18,8 @@ The function \code{\link[=ws_fmt]{ws_fmt()}} returns a \link[base]{character} \l
 Whitespace-padded for left/right justification.
 }
 \examples{
-ws_fmt(c('a', 'abc', 'ab'))
-ws_fmt(c('a', 'abc', 'ab'), justify = 'right')
+c('a', 'abc', 'ab') |> ws_fmt() |> cat(sep = '\n')
+c('a', 'abc', 'ab') |> ws_fmt(justify = 'right') |> cat(sep = '\n')
 
 }
 \seealso{

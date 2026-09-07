@@ -47,23 +47,12 @@ charwidth <- \(x) {
   emoji <- x |> str_detect(pattern = '\\p{So}') # Symbols, Other (includes many emojis)
   #emoji <- x |> emoji_detect()
   
-  if (Sys.getenv('RSTUDIO') == '1') { # RStudio
-    sum(!utf8) + 
-      sum(utf8 & !utf_cj & !utf_k & !emoji) +
-      sum(utf_cj | emoji) * .RStudio_cj_emoji +
-      sum(utf_k) * .RStudio_kr
-  } else if (Sys.getenv('POSITRON') == '1') {
-    sum(!utf8) + 
-      sum(utf8 & !utf_cj & !utf_k & !emoji) +
-      sum(utf_cj | emoji) * .Positron_cj_emoji +
-      sum(utf_k) * .Positron_kr
-  } else { # Rgui
-    sum(!utf8) + 
-      sum(utf8 & !utf_cj & !utf_k & !emoji) +
-      sum(utf_cj) * .Rgui_cj +
-      sum(utf_k) * .Rgui_kr + 
-      sum(emoji) * .Rgui_emoji
-  }
+  sum(!utf8) + 
+    sum(utf8 & !utf_cj & !utf_k & !emoji) +
+    sum(utf_cj) * w_cj() +
+    sum(utf_k) * w_kr() + 
+    sum(emoji) * w_emoji()
+  
 }
 
 
