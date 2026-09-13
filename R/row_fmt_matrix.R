@@ -1,9 +1,9 @@
 
 
-#' @title An Alternative Print of \link[base]{matrix} by \link[base]{cat}
+#' @title Format \link[base]{matrix} by Rows
 #' 
 #' @description
-#' An alternative print of \link[base]{matrix} by \link[base]{cat}.
+#' Format \link[base]{matrix} by rows.
 #' 
 #' @param x \link[base]{character} \link[base]{matrix}
 #' 
@@ -12,14 +12,19 @@
 #' @param justify \link[base]{character} scalar, default value is `'right'`, see the function [ws_fmt()]
 #' 
 #' @returns
-#' The function [cat_matrix()] does not have a returned value.
+#' The function [row_fmt_matrix()] returns a \link[base]{list} of \link[base]{character} \link[base]{vector}s of the formatted **rows**.
+#' 
+#' @examples
+#' VADeaths |> row_fmt_matrix()
 #' 
 #' @importFrom cli ansi_strip format_inline
-# @importFrom cli cli_verbatim
 #' @export
-cat_matrix <- function(x, rownm_justify = 'left', justify = 'right') {
+row_fmt_matrix <- function(x, rownm_justify = 'left', justify = 'right') {
   
-  if (!is.matrix(x) || !is.character(x)) stop('only dealing with \'character\' \'matrix\', for now')
+  if (!is.matrix(x)) stop('input must be matrix')
+  if (!is.character(x)) {
+    storage.mode(x) <- 'character'
+  }
   
   # names(dimnames(x)) # not considered yet..
   
@@ -51,11 +56,7 @@ cat_matrix <- function(x, rownm_justify = 'left', justify = 'right') {
     dots = c(list(rnm_j), x_j), 
     MoreArgs = list(collapse = ' ')
   ) |>
-    lapply(FUN = format_inline, keep_whitespace = TRUE) |>
-    lapply(FUN = cat, sep = '\n')
-    #lapply(FUN = cli_verbatim) # seems to be the same as ?base::cat
-  
-  return(invisible())
+    lapply(FUN = format_inline, keep_whitespace = TRUE)
   
 }
 
