@@ -14,6 +14,8 @@
 #' @returns
 #' The function [cat_matrix()] does not have a returned value.
 #' 
+#' @importFrom cli ansi_strip format_inline
+# @importFrom cli cli_verbatim
 #' @export
 cat_matrix <- function(x, rownm_justify = 'left', justify = 'right') {
   
@@ -49,14 +51,13 @@ cat_matrix <- function(x, rownm_justify = 'left', justify = 'right') {
     dots = c(list(rnm_j), x_j), 
     MoreArgs = list(collapse = ' ')
   ) |>
+    lapply(FUN = format_inline, keep_whitespace = TRUE) |> 
+    lapply(FUN = ansi_strip, sgr = FALSE, csi = FALSE, link = TRUE) |>
     lapply(FUN = cat, sep = '\n')
+    #lapply(FUN = cli_verbatim) # same as ?base::cat
   
   return(invisible())
   
 }
 
 
-if (FALSE) {
-  # ?cli::cli_text does not respect duplicate spaces, as of 2026-04-08
-  cli::cli_text('a           b')
-}

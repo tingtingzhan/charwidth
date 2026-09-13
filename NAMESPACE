@@ -7,6 +7,7 @@ export(ws_fmt)
 importFrom(cli,
   ansi_strip,
   col_red,
+  format_inline,
   style_bold
 )
 importFrom(stringi,

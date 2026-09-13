@@ -30,6 +30,12 @@ ws_fmt <- function(x, justify = c('left', 'right')) {
   })
 }
 
+if (FALSE) {
+  # ?cli::cli_text does not respect `' '`, as of 2026-04-08
+  cli::cli_text('a           b')
+  cli::cli_text('a\u00a0\u00a0\u00a0\u00a0b')
+  # but!! cannot mix hex and Unicode in one string..
+}
 
 
 

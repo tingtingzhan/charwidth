@@ -19,11 +19,13 @@
 #' x |>
 #'  cli::col_red() |>
 #'  charwidth()
-#' @importFrom cli ansi_strip
+#' @importFrom cli ansi_strip format_inline
 #' @importFrom stringr boundary str_split str_detect
 #' @export
 charwidth <- \(x) {
   x |>
+    #format_inline(collapse = FALSE) |> # `collapse` is not working (as tzh thinks) 
+    vapply(FUN = format_inline, FUN.VALUE = '') |>
     ansi_strip() |>
     str_split(pattern = boundary(type = 'character')) |>
     vapply(FUN = .charwidth, FUN.VALUE = NA_real_)
