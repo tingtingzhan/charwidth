@@ -51,10 +51,9 @@ cat_matrix <- function(x, rownm_justify = 'left', justify = 'right') {
     dots = c(list(rnm_j), x_j), 
     MoreArgs = list(collapse = ' ')
   ) |>
-    lapply(FUN = format_inline, keep_whitespace = TRUE) |> 
-    lapply(FUN = ansi_strip, sgr = FALSE, csi = FALSE, link = TRUE) |>
+    lapply(FUN = format_inline, keep_whitespace = TRUE) |>
     lapply(FUN = cat, sep = '\n')
-    #lapply(FUN = cli_verbatim) # same as ?base::cat
+    #lapply(FUN = cli_verbatim) # seems to be the same as ?base::cat
   
   return(invisible())
   
