@@ -12,7 +12,7 @@
 #' @param justify \link[base]{character} scalar, default value is `'right'`, see the function [ws_fmt()]
 #' 
 #' @returns
-#' The function [row_fmt_matrix()] returns a \link[base]{list} of \link[base]{character} \link[base]{vector}s of the formatted **rows**.
+#' The function [row_fmt_matrix()] returns a \link[base]{character} \link[base]{vector} of the formatted **rows**.
 #' 
 #' @examples
 #' VADeaths |> row_fmt_matrix()
@@ -56,7 +56,7 @@ row_fmt_matrix <- function(x, rownm_justify = 'left', justify = 'right') {
     dots = c(list(rnm_j), x_j), 
     MoreArgs = list(collapse = ' ')
   ) |>
-    lapply(FUN = format_inline, keep_whitespace = TRUE)
+    vapply(FUN = format_inline, keep_whitespace = TRUE, FUN.VALUE = '')
   
 }
 

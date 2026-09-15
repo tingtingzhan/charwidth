@@ -14,7 +14,7 @@ row_fmt_matrix(x, rownm_justify = "left", justify = "right")
 \item{justify}{\link[base]{character} scalar, default value is \code{'right'}, see the function \code{\link[=ws_fmt]{ws_fmt()}}}
 }
 \value{
-The function \code{\link[=row_fmt_matrix]{row_fmt_matrix()}} returns a \link[base]{list} of \link[base]{character} \link[base]{vector}s of the formatted \strong{rows}.
+The function \code{\link[=row_fmt_matrix]{row_fmt_matrix()}} returns a \link[base]{character} \link[base]{vector} of the formatted \strong{rows}.
 }
 \description{
 Format \link[base]{matrix} by rows.
