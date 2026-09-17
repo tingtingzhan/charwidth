@@ -20,9 +20,9 @@ charwidth(x)
 # Positron: 10.1952 * 15 # approx 153
 \dontrun{
 library(stringi)
-cat(stri_dup(x, 11L), stri_dup('a', 119L), sep = '\n') # RGui
-cat(stri_dup(x, 9L), stri_dup('a', 92L), sep = '\n') # RStudio
-cat(stri_dup(x, 15L), stri_dup('a', 153L), sep = '\n') # Positron
+chk_utf8(x, times = 11L, total = 119L) # RGui
+chk_utf8(x, times = 9L, total = 92L) # RStudio
+chk_utf8(x, times = 15L, total = 153L) # Positron
 }
 
 x |>
