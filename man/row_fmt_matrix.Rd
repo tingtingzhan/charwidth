@@ -23,3 +23,11 @@ Format \link[base]{matrix} by rows.
 VADeaths |> row_fmt_matrix()
 
 }
+\seealso{
+\link[base]{print.default} for \link[base]{matrix}
+}
+\keyword{format}
+\keyword{justify}
+\keyword{matrix}
+\keyword{row}
+\keyword{unicode}

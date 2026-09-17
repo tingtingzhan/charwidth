@@ -2,7 +2,7 @@
 % Please edit documentation in R/charwidth.R
 \name{charwidth}
 \alias{charwidth}
-\title{An Alternative \link[base]{nchar}}
+\title{Rendered Width of Unicode \link[base]{character}s}
 \usage{
 charwidth(x)
 }
@@ -10,7 +10,7 @@ charwidth(x)
 \item{x}{\link[base]{character} \link[base]{vector}}
 }
 \description{
-An Alternative \link[base]{nchar}
+Rendered Width of Unicode \link[base]{character}s
 }
 \examples{
 (x = c('tea\u8336\ub2e4\ub3c4\U1f375\u207a'))
@@ -28,4 +28,10 @@ chk_utf8(x, times = 15L, total = 153L)
 x |>
  cli::col_red() |>
  charwidth()
+ 
 }
+\keyword{character}
+\keyword{rendered}
+\keyword{unicode}
+\keyword{utf8}
+\keyword{width}

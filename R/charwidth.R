@@ -1,5 +1,5 @@
 
-#' @title An Alternative \link[base]{nchar}
+#' @title Rendered Width of Unicode \link[base]{character}s
 #' 
 #' @param x \link[base]{character} \link[base]{vector}
 #' 
@@ -19,12 +19,14 @@
 #' x |>
 #'  cli::col_red() |>
 #'  charwidth()
+#'  
+#' @keywords unicode utf8 character rendered width
 #' @importFrom cli ansi_strip format_inline
 #' @importFrom stringr boundary str_split str_detect
 #' @export
 charwidth <- \(x) {
   x |>
-    #format_inline(collapse = FALSE) |> # `collapse` is not working (as tzh thinks) 
+    #format_inline(collapse = FALSE) |> # `collapse` is not working (in the way tzh anticipates) 
     vapply(FUN = format_inline, FUN.VALUE = '') |>
     ansi_strip() |>
     str_split(pattern = boundary(type = 'character')) |>
@@ -32,11 +34,11 @@ charwidth <- \(x) {
 }
 
 
-# `x` is after ?stringr::str_split
 #' @importFrom stringi stri_enc_mark
 #' @importFrom stringr str_detect
-# @importFrom emoji emoji_detect
 .charwidth <- \(x) {
+  
+  # `x` is after ?stringr::str_split
   
   enc <- stri_enc_mark(x)
   if (!all(enc %in% c('ASCII', 'UTF-8'))) stop('unknown encoding')
@@ -46,8 +48,8 @@ charwidth <- \(x) {
     str_detect(pattern = '\\p{Han}|\\p{Hiragana}|\\p{Katakana}')
   utf_k <- x |>
     str_detect(pattern = '\\p{Hangul}')
-  emoji <- x |> str_detect(pattern = '\\p{So}') # Symbols, Other (includes many emojis)
-  #emoji <- x |> emoji_detect()
+  emoji <- x |> 
+    str_detect(pattern = '\\p{So}') # Symbols, Other (includes many emojis)
   
   sum(!utf8) + 
     sum(utf8 & !utf_cj & !utf_k & !emoji) +

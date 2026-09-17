@@ -1,5 +1,5 @@
 
-#' @title UTF-8 Symbol Width in IDE
+#' @title Check UTF-8 Symbol Width in IDE
 #' 
 #' @param x \link[base]{character} scalar
 #' 
@@ -29,6 +29,7 @@
 #' chk_utf8('\u2009', times = 100L, total = 100L) # thin space
 #' chk_utf8('\u202f', times = 100L, total = 100L) # narrow no-break space
 #' 
+#' @keywords unicode utf8 character rendered width visualize
 #' @importFrom cli col_red style_bold
 #' @importFrom stringi stri_dup
 #' @export

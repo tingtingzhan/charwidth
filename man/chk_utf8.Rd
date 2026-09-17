@@ -2,7 +2,7 @@
 % Please edit documentation in R/chk_utf8.R
 \name{chk_utf8}
 \alias{chk_utf8}
-\title{UTF-8 Symbol Width in IDE}
+\title{Check UTF-8 Symbol Width in IDE}
 \usage{
 chk_utf8(x, times, total)
 }
@@ -12,7 +12,7 @@ chk_utf8(x, times, total)
 \item{times, total}{\link[base]{integer} scalars}
 }
 \description{
-UTF-8 Symbol Width in IDE
+Check UTF-8 Symbol Width in IDE
 }
 \examples{
 # RStudio
@@ -39,3 +39,9 @@ chk_utf8('\u2009', times = 100L, total = 100L) # thin space
 chk_utf8('\u202f', times = 100L, total = 100L) # narrow no-break space
 
 }
+\keyword{character}
+\keyword{rendered}
+\keyword{unicode}
+\keyword{utf8}
+\keyword{visualize}
+\keyword{width}
