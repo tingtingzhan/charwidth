@@ -18,6 +18,7 @@
 #' c('a', 'abc', 'ab') |> ws_fmt() |> cat(sep = '\n')
 #' c('a', 'abc', 'ab') |> ws_fmt(justify = 'right') |> cat(sep = '\n')
 #' 
+#' @keywords whitespace format justify
 #' @importFrom stringi stri_dup
 #' @export
 ws_fmt <- function(x, justify = c('left', 'right')) {

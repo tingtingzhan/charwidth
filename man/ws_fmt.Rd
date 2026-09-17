@@ -25,3 +25,6 @@ c('a', 'abc', 'ab') |> ws_fmt(justify = 'right') |> cat(sep = '\n')
 \seealso{
 \link[base]{format.default}
 }
+\keyword{format}
+\keyword{justify}
+\keyword{whitespace}
