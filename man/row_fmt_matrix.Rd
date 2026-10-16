@@ -20,7 +20,10 @@ The function \code{\link[=row_fmt_matrix]{row_fmt_matrix()}} returns a \link[bas
 Format \link[base]{matrix} by rows.
 }
 \examples{
-VADeaths |> row_fmt_matrix()
+VADeaths |> row_fmt_matrix() |> cat(sep = '\n')
+
+x = VADeaths; rownames(x) = NULL
+x |> row_fmt_matrix() |> cat(sep = '\n')
 
 }
 \seealso{

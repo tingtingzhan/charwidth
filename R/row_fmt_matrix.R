@@ -15,7 +15,10 @@
 #' The function [row_fmt_matrix()] returns a \link[base]{character} \link[base]{vector} of the formatted **rows**.
 #' 
 #' @examples
-#' VADeaths |> row_fmt_matrix()
+#' VADeaths |> row_fmt_matrix() |> cat(sep = '\n')
+#' 
+#' x = VADeaths; rownames(x) = NULL
+#' x |> row_fmt_matrix() |> cat(sep = '\n')
 #' 
 #' @seealso \link[base]{print.default} for \link[base]{matrix}
 #' 
@@ -54,9 +57,11 @@ row_fmt_matrix <- function(x, rownm_justify = 'left', justify = 'right') {
   x_j <- x1 |>
     apply(MARGIN = 2L, FUN = ws_fmt, justify = justify, simplify = FALSE)
   
+  z <- c(list(rnm_j), x_j)
+  
   .mapply(
     FUN = paste, 
-    dots = c(list(rnm_j), x_j), 
+    dots = z[lengths(z) > 0L], 
     MoreArgs = list(collapse = ' ')
   ) |>
     vapply(FUN = format_inline, keep_whitespace = TRUE, FUN.VALUE = '')
