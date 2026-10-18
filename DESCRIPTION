@@ -12,3 +12,6 @@ Depends: R (>= 4.6)
 Imports: cli (== 3.6.6), stringi (== 1.8.9), stringr (== 1.6.0)
 Config/roxygen2/version: 8.1.1
 Config/roxygen2/markdown: TRUE
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3

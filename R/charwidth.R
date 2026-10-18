@@ -1,21 +1,15 @@
 
 #' @title Rendered Width of Unicode \link[base]{character}s
 #' 
-#' @param x \link[base]{character} \link[base]{vector}
+#' @description
+#' To find the rendered width of various Unicode \link[base]{character}s in RGui and IDEs.
+#' 
+#' 
+#' @param x \link[base]{character} scalar or \link[base]{vector}
 #' 
 #' @examples
 #' (x = c('tea\u8336\ub2e4\ub3c4\U1f375\u207a'))
 #' charwidth(x)
-#'  
-#' # RGui: 10.81754 * 11 # approx 119
-#' chk_utf8(x, times = 11L, total = 119L)
-#' 
-#' # RStudio: 10.21905 * 9 # approx 92L
-#' chk_utf8(x, times = 9L, total = 92L)
-#' 
-#' # Positron: 10.1952 * 15 # approx 153
-#' chk_utf8(x, times = 15L, total = 153L)
-#' 
 #' x |>
 #'  cli::col_red() |>
 #'  charwidth()
@@ -61,3 +55,63 @@ charwidth <- \(x) {
 
 
 
+
+
+
+
+
+
+w_cj <- \() {
+  if (Sys.getenv('RSTUDIO') == '1') {
+    100/60
+  } else if (Sys.getenv('POSITRON') == '1') {
+    141/85
+  } else { # Rgui
+    140/84
+  }
+}
+
+w_emoji <- \() {
+  if (Sys.getenv('RSTUDIO') == '1') {
+    100/60
+  } else if (Sys.getenv('POSITRON') == '1') {
+    141/85
+  } else { # Rgui
+    136/60
+  }
+}
+
+w_kr <- \() {
+  if (Sys.getenv('RSTUDIO') == '1') {
+    101/70
+  } else if (Sys.getenv('POSITRON') == '1') {
+    141/98
+  } else { # Rgui
+    137/95
+  }
+}
+
+
+
+
+
+# @title Check UTF-8 Symbol Width in IDE
+# 
+# @param x \link[base]{character} scalar
+# @param times,total \link[base]{integer} scalars
+# 
+# @examples
+# # not recognized by any rendering
+# chk_utf8('\u2009', times = 100L, total = 100L) # thin space
+# chk_utf8('\u202f', times = 100L, total = 100L) # narrow no-break space
+#' @importFrom stringi stri_dup
+chk_utf8 <- \(x, times, total) {
+  sprintf('%d/%d\n', total, times) |>
+    cat()
+  cat(
+    stri_dup(str = x, times = times) |>
+      sprintf(fmt = '%s\u220e'), 
+    stri_dup(str = '-', times = total) |>
+      sprintf(fmt = '%s\u220e'), 
+    sep = '\n')
+}

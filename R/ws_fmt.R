@@ -21,7 +21,7 @@
 #' @keywords whitespace format justify
 #' @importFrom stringi stri_dup
 #' @export
-ws_fmt <- function(x, justify = c('left', 'right')) {
+ws_fmt <- \(x, justify = c('left', 'right')) {
   n_ <- charwidth(x)
   ws <- stri_dup(str = ' ', times = round(max(n_) - n_))
   switch(match.arg(justify), left = {

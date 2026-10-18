@@ -16,16 +16,14 @@
 #' 
 #' @examples
 #' VADeaths |> row_fmt_matrix() |> cat(sep = '\n')
-#' 
-#' x = VADeaths; rownames(x) = NULL
-#' x |> row_fmt_matrix() |> cat(sep = '\n')
+#' volcano[1:5, 1:5] |> row_fmt_matrix() |> cat(sep = '\n')
 #' 
 #' @seealso \link[base]{print.default} for \link[base]{matrix}
 #' 
 #' @keywords format matrix row unicode justify
 #' @importFrom cli ansi_strip format_inline
 #' @export
-row_fmt_matrix <- function(x, rownm_justify = 'left', justify = 'right') {
+row_fmt_matrix <- \(x, rownm_justify = 'left', justify = 'right') {
   
   if (!is.matrix(x)) stop('input must be matrix')
   if (!is.character(x)) {

@@ -7,24 +7,14 @@
 charwidth(x)
 }
 \arguments{
-\item{x}{\link[base]{character} \link[base]{vector}}
+\item{x}{\link[base]{character} scalar or \link[base]{vector}}
 }
 \description{
-Rendered Width of Unicode \link[base]{character}s
+To find the rendered width of various Unicode \link[base]{character}s in RGui and IDEs.
 }
 \examples{
 (x = c('tea\u8336\ub2e4\ub3c4\U1f375\u207a'))
 charwidth(x)
- 
-# RGui: 10.81754 * 11 # approx 119
-chk_utf8(x, times = 11L, total = 119L)
-
-# RStudio: 10.21905 * 9 # approx 92L
-chk_utf8(x, times = 9L, total = 92L)
-
-# Positron: 10.1952 * 15 # approx 153
-chk_utf8(x, times = 15L, total = 153L)
-
 x |>
  cli::col_red() |>
  charwidth()
