@@ -2,8 +2,8 @@ Package: charwidth
 Type: Package
 Title: charwidth
 Version: 0.1.0
-Date: 2026-10-16
-Description: Need to think more..
+Date: 2026-11-07
+Description: Rendered character width.
 Authors@R: c(person(given = "Tingting", family = "Zhan", role = c("aut", "cre"), email = "tingtingzhan@gmail.com"))
 Language: en-US
 Encoding: UTF-8

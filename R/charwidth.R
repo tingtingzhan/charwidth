@@ -16,24 +16,26 @@
 #'  
 #' @keywords unicode utf8 character rendered width
 #' @importFrom cli ansi_strip format_inline
-#' @importFrom stringr boundary str_split str_detect
 #' @export
 charwidth <- \(x) {
   x |>
     #format_inline(collapse = FALSE) |> # `collapse` is not working (in the way tzh anticipates) 
     vapply(FUN = format_inline, FUN.VALUE = '') |>
     ansi_strip() |>
-    str_split(pattern = boundary(type = 'character')) |>
-    vapply(FUN = .charwidth, FUN.VALUE = NA_real_)
+    vapply(FUN = .charwidth, FUN.VALUE = NA_real_, USE.NAMES = TRUE)
 }
 
 
 #' @importFrom stringi stri_enc_mark
-#' @importFrom stringr str_detect
+#' @importFrom stringr boundary str_split str_detect
 .charwidth <- \(x) {
   
-  # `x` is after ?stringr::str_split
+  if (!is.character(x) || length(x) != 1L || is.na(x)) {
+    stop('input must be character scalar')
+  }
   
+  x <- str_split(string = x, pattern = boundary(type = 'character'))[[1L]]
+
   enc <- stri_enc_mark(x)
   if (!all(enc %in% c('ASCII', 'UTF-8'))) stop('unknown encoding')
   
