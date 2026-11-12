@@ -31,21 +31,12 @@ ws_fmt <- \(x, justify = c('left', 'right')) {
   })
 }
 
-if (FALSE) {
-  # ?cli::cli_text does not respect `' '`, as of 2026-04-08
-  cli::cli_text('a           b')
-  cli::cli_text('a\u00a0\u00a0\u00a0\u00a0b')
-  # but!! cannot mix hex and Unicode in one string..
-}
-
-
-
 
 
 if (FALSE) {
   library(microbenchmark)
-  library(stringr) # stringr::str_dup
-  library(stringi) # stringi::stri_dup
+  library(stringr) # stringr::str_dup # 2025-11-03
+  library(stringi) # stringi::stri_dup # 2026-07-30
   n = 1e3L
   microbenchmark(
     paste(rep(' ', times = n), collapse = ''), 
