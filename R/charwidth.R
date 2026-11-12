@@ -69,7 +69,7 @@ w_cj <- \() {
   } else if (Sys.getenv('POSITRON') == '1') {
     141/85
   } else if (Sys.getenv('TERM_PROGRAM') == 'vscode') {
-    1/2
+    2
   } else { # Rgui
     140/84
   }
@@ -81,7 +81,7 @@ w_emoji <- \() {
   } else if (Sys.getenv('POSITRON') == '1') {
     141/85
   } else if (Sys.getenv('TERM_PROGRAM') == 'vscode') {
-    1/2
+    2
   } else { # Rgui
     136/60
   }
@@ -89,11 +89,11 @@ w_emoji <- \() {
 
 w_kr <- \() {
   if (Sys.getenv('RSTUDIO') == '1') {
-    101/70
+    36/25
   } else if (Sys.getenv('POSITRON') == '1') {
     141/98
   } else if (Sys.getenv('TERM_PROGRAM') == 'vscode') {
-    1/2
+    2
   } else { # Rgui
     137/95
   }
