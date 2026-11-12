@@ -2,16 +2,15 @@ Package: charwidth
 Type: Package
 Title: charwidth
 Version: 0.1.0
-Date: 2026-11-07
-Description: Rendered character width.
+Date: 2026-11-12
+Description: Rendered character width in various GUI/IDE's.
 Authors@R: c(person(given = "Tingting", family = "Zhan", role = c("aut", "cre"), email = "tingtingzhan@gmail.com"))
 Language: en-US
 Encoding: UTF-8
 License: GPL-2
 Depends: R (>= 4.6)
 Imports: cli (== 3.6.6), stringi (== 1.8.9), stringr (== 1.6.0)
+Suggests: testthat (>= 3.0.0)
 Config/roxygen2/version: 8.1.1
 Config/roxygen2/markdown: TRUE
-Suggests: 
-    testthat (>= 3.0.0)
 Config/testthat/edition: 3
