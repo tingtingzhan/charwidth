@@ -18,6 +18,10 @@ charwidth(x)
 x |>
  cli::col_red() |>
  charwidth()
+
+x = c('tea\u8336\ub2e4\n\ub3c4\U1f375\u207a')
+cat(x)
+charwidth(x)
  
 }
 \keyword{character}

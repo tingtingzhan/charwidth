@@ -23,6 +23,11 @@ Format \link[base]{matrix} by rows.
 VADeaths |> row_fmt_matrix() |> cat(sep = '\n')
 volcano[1:5, 1:5] |> row_fmt_matrix() |> cat(sep = '\n')
 
+x = VADeaths
+colnames(x) = colnames(x) |>
+ gsub(pattern = ' ', replacement = '\n')
+x |> row_fmt_matrix() |> cat(sep = '\n')
+
 }
 \seealso{
 \link[base]{print.default} for \link[base]{matrix}

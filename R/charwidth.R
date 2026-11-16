@@ -13,6 +13,10 @@
 #' x |>
 #'  cli::col_red() |>
 #'  charwidth()
+#'
+#' x = c('tea\u8336\ub2e4\n\ub3c4\U1f375\u207a')
+#' cat(x)
+#' charwidth(x)
 #'  
 #' @keywords unicode utf8 character rendered width
 #' @importFrom cli ansi_strip format_inline
@@ -33,6 +37,19 @@ charwidth <- \(x) {
   if (!is.character(x) || length(x) != 1L || is.na(x)) {
     stop('input must be character scalar')
   }
+  
+  if (grepl(pattern = '\\n', x = x)) {
+    z <- x |>
+      strsplit(split = '\n') |> # 'list'
+      vapply(FUN = \(i) {
+        i |>
+          vapply(FUN = .charwidth, FUN.VALUE = NA_real_) |>
+          max()
+      }, FUN.VALUE = NA_real_)
+    return(z)
+  }
+  
+  if (grepl(pattern = '\\n', x = x)) stop('`\n` already taken care of')
   
   x <- str_split(string = x, pattern = boundary(type = 'character'))[[1L]]
 

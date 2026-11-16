@@ -18,6 +18,11 @@
 #' VADeaths |> row_fmt_matrix() |> cat(sep = '\n')
 #' volcano[1:5, 1:5] |> row_fmt_matrix() |> cat(sep = '\n')
 #' 
+#' x = VADeaths
+#' colnames(x) = colnames(x) |>
+#'  gsub(pattern = ' ', replacement = '\n')
+#' x |> row_fmt_matrix() |> cat(sep = '\n')
+#' 
 #' @seealso \link[base]{print.default} for \link[base]{matrix}
 #' 
 #' @keywords format matrix row unicode justify
@@ -34,18 +39,32 @@ row_fmt_matrix <- \(x, rownm_justify = 'left', justify = 'right') {
   
   dnm <- dimnames(x)
   
+  # allow '\n' in colnames `dnm[[2L]]`
+  cnm <- if (length(dnm[[2L]]) && any(grepl(pattern = '\\n', x = dnm[[2L]]))) {
+    dnm[[2L]] |>
+      strsplit(split = '\n') |>
+      aug2equilen() |>
+      c(list(f = c)) |>
+      do.call(what = 'Map', args = _) |>
+      unname() |>
+      do.call(what = 'rbind', args = _)
+  } else dnm[[2L]] # len0 compatible
+  
   if (!length(dnm)) { # no row-name, no col-name
     rnm <- NULL
     x1 <- x
   } else if (!length(dnm[[1L]])) { # no row-name
     rnm <- NULL
-    x1 <- rbind(dnm[[2L]], x)
-  } else if (!length(dnm[[2L]])) { # no col-name
+    x1 <- rbind(cnm, x)
+  } else if (!length(cnm)) { # no col-name
     rnm <- dnm[[1L]] # original row-names
     x1 <- x
   } else { # both row-name and col-name
-    rnm <- c('', dnm[[1L]])
-    x1 <- rbind(dnm[[2L]], x)
+    rnm <- c(
+      rep('', times = if (is.matrix(cnm)) nrow(cnm) else 1L),
+      dnm[[1L]]
+    )
+    x1 <- rbind(cnm, x)
   }
   
   rnm_j <- if (length(rnm)) {
@@ -65,5 +84,23 @@ row_fmt_matrix <- \(x, rownm_justify = 'left', justify = 'right') {
     vapply(FUN = format_inline, keep_whitespace = TRUE, FUN.VALUE = '')
   
 }
+
+
+
+if (FALSE) {
+  (x = list(letters[1L], letters[2:3], letters[4:6]))
+  aug2equilen(x)
+}
+# @param x a \link[base]{list} of \link[base]{character} \link[base]{vector}s
+aug2equilen <- \(x) {
+  
+  ns <- lengths(x)
+  
+  mapply(FUN = \(x, k) {
+    c(x, rep('', times = k))
+  }, x = x, k = max(ns) - ns, SIMPLIFY = FALSE)
+  
+}
+
 
 
