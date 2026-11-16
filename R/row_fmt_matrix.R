@@ -26,7 +26,7 @@
 #' @seealso \link[base]{print.default} for \link[base]{matrix}
 #' 
 #' @keywords format matrix row unicode justify
-#' @importFrom cli ansi_strip format_inline
+#' @importFrom cli ansi_strip format_inline col_grey
 #' @export
 row_fmt_matrix <- \(x, rownm_justify = 'left', justify = 'right') {
   
@@ -40,15 +40,24 @@ row_fmt_matrix <- \(x, rownm_justify = 'left', justify = 'right') {
   dnm <- dimnames(x)
   
   # allow '\n' in colnames `dnm[[2L]]`
-  cnm <- if (length(dnm[[2L]]) && any(grepl(pattern = '\\n', x = dnm[[2L]]))) {
-    dnm[[2L]] |>
+  if (length(dnm[[2L]]) && any(grepl(pattern = '\\n', x = dnm[[2L]]))) {
+    tmp <- dnm[[2L]] |>
       strsplit(split = '\n') |>
       aug2equilen() |>
       c(list(f = c)) |>
       do.call(what = 'Map', args = _) |>
-      unname() |>
+      unname() 
+    tmp[-1L] <- tmp[-1L] |>
+      lapply(FUN = \(i) {
+        i |> 
+          col_grey()
+      })
+    cnm <- tmp |>
       do.call(what = 'rbind', args = _)
-  } else dnm[[2L]] # len0 compatible
+    
+  } else {
+    cnm <- dnm[[2L]] # len0 compatible
+  }
   
   if (!length(dnm)) { # no row-name, no col-name
     rnm <- NULL

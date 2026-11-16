@@ -5,6 +5,7 @@ export(row_fmt_matrix)
 export(ws_fmt)
 importFrom(cli,
   ansi_strip,
+  col_grey,
   format_inline
 )
 importFrom(stringi,
